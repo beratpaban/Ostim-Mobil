@@ -10,30 +10,32 @@ public class Main {
         System.out.println("Oyun Fiyatı: " + oyunFiyati);
         System.out.println("Yüklü mü?: " + oyunYukluMu);
 
-        System.out.println("===================== ÖRNEK 1: BİTİŞ =====================");
+        System.out.println("===================== ÖRNEK 1: BİTİŞ ================================");
 
-        // ============= ÖRNEK 2: GÜNLÜK HAYATTAN VERİLER ==================
+        System.out.println("===================== ÖRNEK 2: GÜNLÜK HAYATTAN VERİLER ==============");
         short sayfaSayisi = 4500;
         short gunlukAdimSayisi = 8500;
         float havaSicakligi = 24.5f;
         boolean kosullariKabulEtti = false;
-        System.out.println(sayfaSayisi);
-        System.out.println(gunlukAdimSayisi);
-        System.out.println(havaSicakligi);
-        System.out.println(kosullariKabulEtti);
 
-        // ============= ÖRNEK 2: BİTİŞ ==================
+        System.out.println("Sayfa Sayısı: " + sayfaSayisi);
+        System.out.println("Günlük Adım Sayısı: " + gunlukAdimSayisi);
+        System.out.println("Hava Sıcaklığı: " + havaSicakligi);
+        System.out.println("Koşulları Kabul Etti: " + kosullariKabulEtti);
 
-        // ============= ÖRNEK 3: İnternet Paketi Takibi ==================
+        System.out.println("===================== ÖRNEK 2: BİTİŞ ================================");
+
+        System.out.println("===================== ÖRNEK 3: İnternet Paketi Takibi ===============");
         int aylikPaketGB = 25;
         int toplamPaketMB = aylikPaketGB * 1024;
         int kullanilanMB = 6500;
         int kalanPaketMB = toplamPaketMB - kullanilanMB;
 
-        System.out.println("Kalan İnternet Hakkınız (MB):" + kalanPaketMB);
-        // ============= ÖRNEK 3: BİTİŞ ==================
+        System.out.println("Kalan İnternet Hakkınız (MB): " + kalanPaketMB);
 
-        // ============= ÖRNEK 4: AKILLI TELEFON KİMLİĞİ ==================
+        System.out.println("===================== ÖRNEK 3: BİTİŞ ================================");
+
+        System.out.println("===================== ÖRNEK 4: AKILLI TELEFON KİMLİĞİ ===============");
         String marka = "Apple";
         String model = "16 Pro";
         float ekranBoyutu = 6.5f;
@@ -47,7 +49,8 @@ public class Main {
         System.out.println("Depolama (GB): " + depolamaGB + " GB");
         System.out.println("NFC Var mı?: " + nfcVarMi);
         System.out.println("-------------------------------");
-        // ============= ÖRNEK 4: BİTİŞ ==================
+
+        System.out.println("===================== ÖRNEK 4: BİTİŞ ================================");
 
     }
 }
