@@ -71,10 +71,12 @@ import androidx.core.view.WindowInsetsCompat;
 ```java
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextNumber1;
-    EditText editTextNumber2;
-    Button kontrolEtButton;
+    // XML dosyasındaki bileşenleri kod tarafında kullanmak için tanımlıyoruz.
+    EditText editTextNumber1;   // Kullanıcının 1. sayıyı gireceği EditText.
+    EditText editTextNumber2;   // Kullanıcının 2. sayıyı gireceği EditText.
+    Button kontrolEtButton;     // Karşılaştırmayı başlatacak buton.
 
+    // Activity ilk açıldığında çalışan metot (Android yaşam döngüsünde onCreate).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ...
@@ -104,26 +106,33 @@ protected void onCreate(Bundle savedInstanceState) {
         return insets;
     });
 
-    editTextNumber1 = findViewById(R.id.EditTextSayi1);
-    editTextNumber2 = findViewById(R.id.EditTextSayi2);
-    kontrolEtButton = findViewById(R.id.kontrolButtonID);
+     // XML’deki bileşenleri Java tarafına bağlıyoruz (findViewById ile).
+      editTextNumber1 = findViewById(R.id.EditTextSayi1);   // 1. sayının girişi
+      editTextNumber2 = findViewById(R.id.EditTextSayi2);   // 2. sayının girişi
+      kontrolEtButton = findViewById(R.id.kontrolButtonID); // "Kontrol Et" butonu
 
+    // Butona tıklandığında çalışacak işlemi tanımlıyoruz.
     kontrolEtButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String s1 = editTextNumber1.getText().toString();
-            String s2 = editTextNumber2.getText().toString();
-            String toastMesaji;
-            int sayi1 = Integer.parseInt(s1);
-            int sayi2 = Integer.parseInt(s2);
-            if (sayi1 > sayi2) {
-                toastMesaji = "1. Sayı 2. Sayıdan Büyük";
-            } else if (sayi1 < sayi2) {
-                toastMesaji = "2. Sayı 1. Sayıdan Büyük";
-            } else {
-                toastMesaji = "Sayılar Eşit";
-            }
-            Toast.makeText(MainActivity.this, toastMesaji, Toast.LENGTH_SHORT).show();
+          // EditText içindeki metinleri String olarak alıyoruz.
+          String s1 = editTextNumber1.getText().toString();
+          String s2 = editTextNumber2.getText().toString();
+          // Ekranda göstereceğimiz mesajı tutacak değişken.
+          String toastMesaji;
+          // String ifadeleri tamsayıya (int) çeviriyoruz.
+          int sayi1 = Integer.parseInt(s1);
+          int sayi2 = Integer.parseInt(s2);
+          // Karşılaştırma yapıyoruz:
+          if (sayi1 > sayi2) {
+              toastMesaji = "1. Sayı 2. Sayıdan Büyük"; // Eğer 1. sayı büyükse
+          } else if (sayi1 < sayi2) {
+              toastMesaji = "2. Sayı 1. Sayıdan Büyük"; // Eğer 2. sayı büyükse
+          } else {
+              toastMesaji = "Sayılar Eşit";             // Eğer eşitse
+          
+          // Sonuç mesajını kısa süreli bir Toast ile ekranda gösteriyoruz.
+          Toast.makeText(MainActivity.this, toastMesaji, Toast.LENGTH_SHORT).show();
         }
     });
 }
