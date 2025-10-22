@@ -104,10 +104,6 @@ Kullanıcı giriş örneğimizde, girişin başarılı sayılması için:
 
   * [ ] **Soru 1:** Bir öğrencinin notu 50'den büyük veya eşitse ekrana "Geçtiniz", değilse "Kaldınız" yazan bir `if-else` kod bloğu yazar mısınız?
 
-    \<details\>
-    \<summary\>Cevabı Gör\</summary\>
-
-    ````
     ```java
     int ogrenciNotu = 65;
 
@@ -117,18 +113,14 @@ Kullanıcı giriş örneğimizde, girişin başarılı sayılması için:
         System.out.println("Kaldınız");
     }
     ```
-    ````
-
-    \</details\>
 
 <br>
 
   * [ ] **Soru 2:** Bir mağazada 18 yaşından büyük **ve** parası 100 TL'den fazla olan bir kişinin alışveriş yapabildiği bir senaryo düşünün. Bu iki şartı `if` içinde `&&` operatörüyle nasıl birleştirirsiniz?
 
-    \<details\>
-    \<summary\>Cevabı Gör\</summary\>
 
-    ````
+
+
     ```java
     int yas = 20;
     double para = 150.0;
@@ -139,9 +131,9 @@ Kullanıcı giriş örneğimizde, girişin başarılı sayılması için:
         System.out.println("Maalesef, alışveriş için şartları sağlamıyorsunuz.");
     }
     ```
-    ````
 
-    \</details\>
+
+
 
 <br>
 
