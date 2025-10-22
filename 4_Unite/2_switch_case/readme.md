@@ -39,7 +39,7 @@ switch (kontrol edilecek değişken) {
 }
 ```
 
-*Kaynak: mobil.pdf (4.bolum.pdf, Sayfa 136)*
+
 
 #### Anahtar Kelimeler:
 
@@ -86,7 +86,7 @@ public void onayla(View view) {
 }
 ```
 
-*Kaynak: mobil.pdf (4.bolum.pdf, Sayfa 138)*
+
 
 **Nasıl Çalışıyor?**
 Diyelim ki kullanıcı `3` sayısını girdi.
