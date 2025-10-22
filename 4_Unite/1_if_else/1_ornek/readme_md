@@ -1,0 +1,233 @@
+# MainActivity — Adım Adım Açıklama
+
+Bu README, `com.example.sinavtekrari` paketindeki `MainActivity` Java dosyasını satır satır ve blok blok açıklayan bir rehberdir. Android'e yeni başlayanlar için adım adım, ne olduğunu ve neden kullanıldığını anlattım.
+
+---
+
+## İçindekiler
+
+1. Proje amacı
+2. Gereksinimler
+3. Dosya yapısı (kısa)
+4. `MainActivity` kodunun adım adım açıklaması
+5. Nasıl çalıştırılır
+6. Sıkça sorulan hatalar ve çözümleri
+
+---
+
+## 1) Proje amacı
+
+Küçük bir Android uygulaması. Kullanıcıdan iki tamsayı alır, "Kontrol Et" butonuna basıldığında sayıları karşılaştırır ve sonucu kısa bir `Toast` mesajı ile gösterir (ör. "1. Sayı 2. Sayıdan Büyük").
+
+## 2) Gereksinimler
+
+* Android Studio (tercihen en güncel sürüm)
+* Java 8+
+* AndroidX destek kütüphaneleri
+* `activity_main.xml` içinde uygun `EditText` ve `Button` ID'lerinin tanımlanmış olması:
+
+  * `@+id/main` (root view)
+  * `@+id/EditTextSayi1`
+  * `@+id/EditTextSayi2`
+  * `@+id/kontrolButtonID`
+
+## 3) Dosya yapısı (kısa)
+
+```
+app/
+  src/main/java/com/example/sinavtekrari/MainActivity.java
+  src/main/res/layout/activity_main.xml
+  AndroidManifest.xml
+```
+
+`MainActivity.java` uygulamanın giriş noktasıdır (launcher activity olarak manifest'te tanımlı olmalı).
+
+---
+
+## 4) `MainActivity` kodunun adım adım açıklaması
+
+Aşağıda kodu mantıksal bloklara ayırıp her bloğu açıkladım.
+
+### 4.1 Paket ve importlar
+
+```java
+package com.example.sinavtekrari;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+```
+
+* `package` satırı: Bu sınıfın proje içindeki yerini belirtir.
+* `import` satırları: Kullanılan Android ve AndroidX sınıflarını projeye dahil eder. Örneğin `EditText`, `Button`, `Toast` gibi UI öğeleri.
+* `EdgeToEdge`, `ViewCompat`, `WindowInsetsCompat` gibi sınıflar modern UI düzenlemeleri (durum çubuğu/gezinti çubuğu boşlukları) için kullanılır.
+
+---
+
+### 4.2 Sınıf tanımı ve üye değişkenler
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    EditText editTextNumber1;
+    EditText editTextNumber2;
+    Button kontrolEtButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        ...
+    }
+}
+```
+
+* `MainActivity` `AppCompatActivity`'yi genişletir — modern Android aktiviteleri için yaygın base sınıfıdır.
+* `EditText` ve `Button` referansları sınıf seviyesinde tanımlanır ki `onCreate` içinde bağlanıp buton tıklama mantığında kullanılabilsin.
+
+---
+
+### 4.3 `onCreate` metodu — yaşam döngüsü başlangıcı
+
+`onCreate` aktivite ilk oluşturulduğunda çalışır. UI kurulumu ve ilk atamalar burada yapılır.
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    EdgeToEdge.enable(this);
+    setContentView(R.layout.activity_main);
+
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+        return insets;
+    });
+
+    editTextNumber1 = findViewById(R.id.EditTextSayi1);
+    editTextNumber2 = findViewById(R.id.EditTextSayi2);
+    kontrolEtButton = findViewById(R.id.kontrolButtonID);
+
+    kontrolEtButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String s1 = editTextNumber1.getText().toString();
+            String s2 = editTextNumber2.getText().toString();
+            String toastMesaji;
+            int sayi1 = Integer.parseInt(s1);
+            int sayi2 = Integer.parseInt(s2);
+            if (sayi1 > sayi2) {
+                toastMesaji = "1. Sayı 2. Sayıdan Büyük";
+            } else if (sayi1 < sayi2) {
+                toastMesaji = "2. Sayı 1. Sayıdan Büyük";
+            } else {
+                toastMesaji = "Sayılar Eşit";
+            }
+            Toast.makeText(MainActivity.this, toastMesaji, Toast.LENGTH_SHORT).show();
+        }
+    });
+}
+```
+
+Aşağıda bu bloğun içindeki önemli satırların açıklamaları:
+
+* `super.onCreate(savedInstanceState);`
+
+  * Üst sınıfın (AppCompatActivity) `onCreate` işlerini yapmasını sağlar. **Her zaman** çağrılmalıdır.
+
+* `EdgeToEdge.enable(this);`
+
+  * Uygulamayı kenardan kenara (sistem çubuklarına doğru) gösterim için hazırlar. Modern tam ekran düzenlemelerinde kullanışlıdır.
+
+* `setContentView(R.layout.activity_main);`
+
+  * `activity_main.xml` içeriğini bu aktiviteye bağlar. Buradan sonra `findViewById` ile XML içindeki bileşenlere erişebiliriz.
+
+* `ViewCompat.setOnApplyWindowInsetsListener(...)`
+
+  * Cihazın durum çubuğu/gezinti çubuğu gibi sistem öğelerinin kapladığı alanları alır ve root view (`R.id.main`) için uygun `padding` uygular. Böylece içerik sistem çubuklarının içine çakılmaz, güvenli alan korunur.
+
+* `findViewById` çağrıları
+
+  * XML içindeki `EditText` ve `Button` elementlerini Java nesnelerine bağlar.
+
+* `kontrolEtButton.setOnClickListener(...)`
+
+  * Butona tıklandığında çalışacak kodu belirler. Burada kullanıcı girdisi okunur, parse edilir, karşılaştırma yapılır ve `Toast` ile sonuç gösterilir.
+
+* `Integer.parseInt(s1)`
+
+  * `String` türündeki metni `int`'e çevirir. Eğer kullanıcı geçerli bir tam sayı girmezse `NumberFormatException` fırlatır (aşağıda hata yönetimi bölümünde çözümler var).
+
+* `Toast.makeText(...).show()`
+
+  * Kısa mesaj baloncuğu (popup) gösterir. `Toast.LENGTH_SHORT` mesajın kısa süreli gösterileceğini belirtir.
+
+---
+
+## 5) Nasıl çalıştırılır
+
+1. Android Studio'da projeyi açın.
+2. `activity_main.xml` dosyasındaki `EditText` ve `Button` ID'lerinin yukarıda belirtilenlerle aynı olduğundan emin olun.
+3. Emulator veya gerçek cihaz bağlayın.
+4. Run (Çalıştır) butonuna basın.
+5. Uygulama açıldığında iki sayı girip "Kontrol Et" butonuna basın; sonuç bir `Toast` ile görünür.
+
+---
+
+## 6) Sıkça karşılaşılan hatalar & çözümleri
+
+### Hata: `NumberFormatException` (uygulama çöker)
+
+* Sebep: `EditText` boş veya sayı dışında karakter içeriyor.
+* Çözüm: Buton tıklama işlemine girmeden önce `EditText`lerin boş olup olmadığını kontrol edin:
+
+```java
+String s1 = editTextNumber1.getText().toString().trim();
+String s2 = editTextNumber2.getText().toString().trim();
+if (s1.isEmpty() || s2.isEmpty()) {
+    Toast.makeText(this, "Lütfen her iki alana da sayı girin", Toast.LENGTH_SHORT).show();
+    return;
+}
+```
+
+Ayrıca `try-catch` bloğu ile `Integer.parseInt` çevresini sarmalayabilirsiniz:
+
+```java
+try {
+    int sayi1 = Integer.parseInt(s1);
+    int sayi2 = Integer.parseInt(s2);
+    // devam
+} catch (NumberFormatException e) {
+    Toast.makeText(this, "Lütfen geçerli bir tam sayı girin", Toast.LENGTH_SHORT).show();
+}
+```
+
+### Hata: `findViewById` null dönüyor
+
+* Sebep: `setContentView` çağrılmadan önce `findViewById` çağrılmış olabilir veya XML'de ID yanlış.
+* Çözüm: `setContentView` çağrısının doğru layout'u yüklediğinden ve ID adlarının eşleştiğinden emin olun.
+
+### Hata: UI sistem çubuklarının altında kalıyor
+
+* Sebep: `ViewCompat.setOnApplyWindowInsetsListener` yoksa veya yanlış kök view kullanıldıysa.
+* Çözüm: Root view'in ID'sinin `main` olduğundan ve listener'ın doğru view üzerinde uygulandığından emin olun.
+
+---
+
+## Ek: İyileştirme önerileri
+
+* Kullanıcı hatalarını (boş giriş, harf girme vs.) kontrol et.
+* Çok büyük sayılar için `long` tipi veya `BigInteger` kullanmayı düşün.
+* Sonucu bir `TextView` içine de yazdırarak `Toast` ile birlikte kullan.
+* UI/UX: `inputType="number"` özelliğini `EditText`lerde ayarlayarak sadece sayısal klavye açılmasını sağla.
+
+---
+
+Eğer istersen, bu README'yi `activity_main.xml` örneği ile genişleteyim veya hata yönetimi + örnek UI ekran görüntüleri ekleyeyim.
