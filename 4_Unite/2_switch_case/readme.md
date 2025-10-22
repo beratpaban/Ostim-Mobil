@@ -149,5 +149,3 @@ Diyelim ki kullanıcı `3` sayısını girdi.
       * [ ] Program hata verir ve çalışmaz.
       * [x] Program o `case` bloğunu çalıştırdıktan sonra alttaki `case` bloğunu da (koşuluna bakmadan) çalıştırmaya devam eder.
       * [ ] Program `default` bloğunu çalıştırır.
-
-`switch-case` yapısını da öğrendiğimize göre, programlarımıza karar aldırma konusunda artık çok daha güçlüyüz\! Bir sonraki dersimizde döngüler dünyasına heyecan verici bir giriş yapacağız. Harika işti, devam edin\! 💪
