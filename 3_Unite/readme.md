@@ -1,7 +1,6 @@
+# 👋🏻 Selam Arkadaşlar
 
 ## Üçüncü Öğrenme Birimi: Temel Komutlar
-
-Bu ünitede, programlamanın kalbine iniyoruz\! Değişkenler, veri tipleri, operatörler gibi temel kavramları öğrenecek ve kod yazarken yaptığımız hataları nasıl bulup düzelteceğimizi keşfedeceğiz. 
 
 ### 3.2 Değişkenler: Bilgileri Sakladığımız Kutular
 
@@ -101,5 +100,5 @@ Değişkenlerimizi kullanarak matematiksel ve mantıksal işlemler yaparız.
 > 3.  İki şartın *aynı anda* doğru olmasını kontrol etmek için hangi mantıksal operatörü kullanırız?
 > 4.  Kodunuzun belirli bir satırda durup beklemesini sağlayan hata ayıklama aracının adı nedir?
 
-Umarım bu notlar dersi daha iyi anlamanıza yardımcı olur. Bir sonraki ünitede görüşmek üzere\!
+Umarım bu notlar dersi daha iyi anlamanıza yardımcı olur.
 
