@@ -142,4 +142,144 @@ Kullanıcı giriş örneğimizde, girişin başarılı sayılması için:
       * [x] Koşul `false` olduğunda
       * [ ] Her zaman
 
-Harika iş çıkardınız\! `if-else` mantığı, programlarımıza karar verme yeteneği kazandırmanın en temel yollarından biridir. Bir sonraki dersimizde `if-else-if` ile yol ayrımlarını daha da artıracağız. Kodlamaya devam\! 🚀
+
+# Ünite 4.1.3: Karar Yapıları - if-else-if ile Çoklu Seçenekler Dünyası\! 🗺️
+
+
+`if-else-if` yapısı, programa adeta bir kontrol listesi sunar. Program, listedeki şartları yukarıdan aşağıya doğru tek tek kontrol eder. Hangi şart ilk olarak sağlanırsa, o şartın kod bloğunu çalıştırır ve zincirin geri kalanını tamamen atlayarak yoluna devam eder.
+
+> **Günlük Hayattan Bir Örnek:**
+> Bir restoranda menüye baktığınızı düşünün.
+>
+>   * **Eğer (if)** canım çorba istiyorsa, **mercimek çorbası sipariş ederim.**
+>   * **Değilse eğer (else if)** canım et yemeği istiyorsa, **köfte sipariş ederim.**
+>   * **Değilse eğer (else if)** canım sebze yemeği istiyorsa, **taze fasulye sipariş ederim.**
+>   * **Değilse (else)** (hiçbiri değilse), **sadece salata yerim.**
+>
+> Köfte siparişi verdiğiniz an, menünün geri kalanına bakmayı bırakırsınız. `if-else-if` de tam olarak böyle çalışır\!
+
+## `if-else-if` Nedir?
+
+Bu yapı, birbirini takip eden `if` koşullarından oluşur.
+
+1.  Program ilk `if` koşuluna bakar. Sonuç `true` ise o bloğu çalıştırır ve zincirden çıkar.
+2.  Eğer ilk `if` koşulu `false` ise, bir sonraki `else if` koşulunu kontrol eder. `true` ise o bloğu çalıştırır ve zincirden çıkar.
+3.  Bu süreç, `true` olan bir koşul bulunana veya zincir bitene kadar devam eder.
+4.  Eğer hiçbir `if` veya `else if` koşulu sağlanmazsa, en sonda bulunan (isteğe bağlı) `else` bloğu çalışır. Bu `else` bloğu, "yukarıdakilerden hiçbiri değilse" anlamına gelen bir varsayılan durumdur.
+
+### 📝 Söz Dizimi (Syntax)
+
+```java
+if (şart 1) {
+  // Şart 1 doğru ise bu blok çalışır.
+} else if (şart 2) {
+  // Şart 1 yanlış AMA Şart 2 doğru ise bu blok çalışır.
+} else if (şart 3) {
+  // İlk iki şart yanlış AMA Şart 3 doğru ise bu blok çalışır.
+} else {
+  // Yukarıdaki şartların HİÇBİRİ doğru değilse bu blok çalışır.
+}
+```
+
+
+
+## 💻 Uygulama Zamanı: Not Ortalaması Hesaplama
+
+Ders kitabımızdaki 5. Uygulama, `if-else-if` yapısını anlamak için mükemmel bir örnek. 
+
+**Senaryomuz:** Öğrencinin girdiği üç notun ortalamasını hesaplayacağız. Bu ortalamaya göre, 5'lik not sistemindeki karşılığını (0, 1, 2, 3, 4 veya 5) bir `Toast` mesajı ile ekranda göstereceğiz. 
+
+### Kod İncelemesi
+
+Önce notları alıp ortalamayı hesaplıyoruz:
+
+```java
+int not1 = Integer.parseInt(editTextNot1.getText().toString());
+int not2 = Integer.parseInt(editTextNot2.getText().toString());
+int not3 = Integer.parseInt(editTextNot3.getText().toString());
+
+float ort = (not1 + not2 + not3) / 3;
+```
+
+
+
+Şimdi de bu `ort` (ortalama) değişkenini kullanarak `if-else-if` zincirimizi kuruyoruz:
+
+```java
+if (ort >= 0 && ort < 25) {
+    Toast.makeText(this, "0 ile kaldınız.", Toast.LENGTH_LONG).show();
+} else if (ort >= 25 && ort < 50) {
+    Toast.makeText(this, "1 ile kaldınız.", Toast.LENGTH_LONG).show();
+} else if (ort >= 50 && ort < 60) {
+    Toast.makeText(this, "2 ile geçtiniz.", Toast.LENGTH_LONG).show();
+} else if (ort >= 60 && ort < 70) {
+    Toast.makeText(this, "3 ile geçtiniz.", Toast.LENGTH_LONG).show();
+} else if (ort >= 70 && ort < 85) {
+    Toast.makeText(this, "4 ile geçtiniz.", Toast.LENGTH_LONG).show();
+} else if (ort >= 85 && ort <= 100) {
+    Toast.makeText(this, "5 ile geçtiniz. Tebrikler", Toast.LENGTH_LONG).show();
+} else {
+    Toast.makeText(this, "Girilen Not Bilgileri Hatalıdır.", Toast.LENGTH_LONG).show();
+}
+```
+
+
+**Nasıl Çalışıyor?**
+Diyelim ki öğrencinin ortalaması `75`.
+
+1.  Program ilk `if`'e bakar: `ort` (75), 0 ile 25 arasında mı? **Hayır.**
+2.  Bir sonraki `else if`'e geçer: `ort` (75), 25 ile 50 arasında mı? **Hayır.**
+3.  Bir sonrakine geçer...
+4.  `else if (ort >= 70 && ort < 85)` koşuluna gelir: `ort` (75), 70 ile 85 arasında mı? **Evet\!**
+5.  Program bu bloğun içindeki `Toast` mesajını ("4 ile geçtiniz.") çalıştırır ve **zincirin geri kalanına hiç bakmadan** yapıdan çıkar.
+
+-----
+
+> ### 🎯 Özet Kutucuğu
+>
+> \* `if-else-if` yapısı, ikiden fazla koşul veya seçenek olduğunda kullanılır.
+>
+>   * Koşullar, yazıldığı sırayla (yukarıdan aşağıya) kontrol edilir.
+>   * Program, doğru (`true`) olan **ilk** koşulu bulduğu an, o bloğu çalıştırır ve zincirin geri kalanını atlar.
+>   * En sondaki `else` bloğu, yukarıdaki koşullardan hiçbiri sağlanmazsa çalışacak olan "joker" veya "varsayılan" bloktur.
+
+-----
+
+### ✅ Alıştırma Zamanı\!
+
+  * [ ] **Soru 1:** Bir trafik ışığı programı yazdığımızı düşünelim. `String renk = "sarı";` değişkenine göre `if-else-if` yapısını kullanarak:
+
+      * Eğer renk "kırmızı" ise "Dur\!"
+      * Eğer renk "sarı" ise "Hazırlan\!"
+      * Eğer renk "yeşil" ise "Geç\!"
+      * Hiçbiri değilse "Hatalı Renk\!" yazdıran kodu oluşturun.
+
+    \<details\>
+    \<summary\>Cevabı Gör\</summary\>
+
+    ````
+    ```java
+    String renk = "sarı";
+
+    if (renk.equals("kırmızı")) {
+        System.out.println("Dur!");
+    } else if (renk.equals("sarı")) {
+        System.out.println("Hazırlan!");
+    } else if (renk.equals("yeşil")) {
+        System.out.println("Geç!");
+    } else {
+        System.out.println("Hatalı Renk!");
+    }
+    ```
+    ````
+
+    \</details\>
+
+<br>
+
+  * [ ] **Soru 2:** `if-else-if` yapısında, doğru olan bir `else if` koşulu bulunduktan sonra ne olur?
+      * [ ] Program diğer `else if` bloklarını da kontrol etmeye devam eder.
+      * [x] Program o bloğu çalıştırır ve `if-else-if` zincirinin geri kalanını atlar.
+      * [ ] Program en sondaki `else` bloğunu da çalıştırır.
+
+Artık programlarınıza çok daha karmaşık kararlar aldırabilirsiniz\! Bir sonraki konumuz olan `switch-case` ile farklı bir karar yapısını daha tanıyacağız. Harika gidiyorsunuz\! 👏
