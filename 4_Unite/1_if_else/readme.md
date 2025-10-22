@@ -254,10 +254,9 @@ Diyelim ki öğrencinin ortalaması `75`.
       * Eğer renk "yeşil" ise "Geç\!"
       * Hiçbiri değilse "Hatalı Renk\!" yazdıran kodu oluşturun.
 
-    \<details\>
-    \<summary\>Cevabı Gör\</summary\>
+ 
 
-    ````
+
     ```java
     String renk = "sarı";
 
@@ -271,9 +270,6 @@ Diyelim ki öğrencinin ortalaması `75`.
         System.out.println("Hatalı Renk!");
     }
     ```
-    ````
-
-    \</details\>
 
 <br>
 
@@ -281,5 +277,3 @@ Diyelim ki öğrencinin ortalaması `75`.
       * [ ] Program diğer `else if` bloklarını da kontrol etmeye devam eder.
       * [x] Program o bloğu çalıştırır ve `if-else-if` zincirinin geri kalanını atlar.
       * [ ] Program en sondaki `else` bloğunu da çalıştırır.
-
-Artık programlarınıza çok daha karmaşık kararlar aldırabilirsiniz\! Bir sonraki konumuz olan `switch-case` ile farklı bir karar yapısını daha tanıyacağız. Harika gidiyorsunuz\! 👏
