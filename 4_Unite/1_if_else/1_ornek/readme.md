@@ -1,9 +1,3 @@
-# MainActivity — Adım Adım Açıklama
-
-Bu README, `com.example.sinavtekrari` paketindeki `MainActivity` Java dosyasını satır satır ve blok blok açıklayan bir rehberdir. Android'e yeni başlayanlar için adım adım, ne olduğunu ve neden kullanıldığını anlattım.
-
----
-
 ## İçindekiler
 
 1. Proje amacı
@@ -35,7 +29,7 @@ Küçük bir Android uygulaması. Kullanıcıdan iki tamsayı alır, "Kontrol Et
 
 ```
 app/
-  src/main/java/com/example/sinavtekrari/MainActivity.java
+  src/main/java/com/example/a1_ornek/MainActivity.java
   src/main/res/layout/activity_main.xml
   AndroidManifest.xml
 ```
@@ -51,7 +45,7 @@ Aşağıda kodu mantıksal bloklara ayırıp her bloğu açıkladım.
 ### 4.1 Paket ve importlar
 
 ```java
-package com.example.sinavtekrari;
+package com.example.a1_ornek;
 
 import android.os.Bundle;
 import android.view.View;
