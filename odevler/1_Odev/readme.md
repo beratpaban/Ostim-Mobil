@@ -94,9 +94,9 @@ Bu bölümde, verilen değişkenler kullanılarak karşılaştırma (`>`, `<`, `
 | `(s3 > s1) && (s2 > s1)` | `true` | (45 > 5) `&&` (12 > 5) -> `true && true` -> **`true`** (`&&` - VE: Her iki taraf da doğru olmalı) |
 | `(s2 < s3) \|\| (s1 > s4)` | `true` | (12 < 45) `\|\|` (5 > 34) -> `true \|\| false` -> **`true`** (`\|\|` - VEYA: Taraflardan en az biri doğru olmalı) |
 | `!(s3 <= s4)` | `true` | !(45 <= 34) -> !(false) -> **`true`** (`!` - DEĞİL: Sonucun tersini alır) |
-| `( (s1 > s2) && (s2 > s3) ) \|\| (s4 == s1)` | `false` | ( (5 > 12) `&&` (12 > 45) ) `||` (34 == 5) -> (`false && false`) `||` `false` -> `false || false` -> **`false`** |
-| `(s4 != s1) &#124; (s2 == s3)` | `true` | (34 != 5) `&#124;` (12 == 45) -> `true &#124; false` -> **`true`** |
-| `((s2 < s3) || (s4 < s1)) && (s3 != s2)` | `true` | ( (12 < 45) `||` (34 < 5) ) `&&` (45 != 12) -> (`true || false`) `&&` `true` -> `true && true` -> **`true`** |
+| `( (s1 > s2) && (s2 > s3) ) \|\| (s4 == s1)` | `false` | ( (5 > 12) `&&` (12 > 45) ) `\|\|` (34 == 5) -> (`false && false`) `\|\|` `false` -> `false || false` -> **`false`** |
+| `(s4 != s1) \|\| (s2 == s3)` | `true` | (34 != 5) `\|\|` (12 == 45) -> `true &#124; false` -> **`true`** |
+| `((s2 < s3) \|\| (s4 < s1)) && (s3 != s2)` | `true` | ( (12 < 45) `\|\|` (34 < 5) ) `&&` (45 != 12) -> (`true \|\| false`) `&&` `true` -> `true && true` -> **`true`** |
 
 ---
 
