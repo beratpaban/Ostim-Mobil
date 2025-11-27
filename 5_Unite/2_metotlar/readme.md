@@ -1,14 +1,6 @@
-Aşağıdaki metni tamamen **Markdown formatına uygun**, düzenli, okunabilir ve eğitim materyali formatında yeniden yazdım:
 
----
 
 # 📚 Ders: Gelişmiş Komutlar - Metotlar (Methods)
-
-**Hedef Kitle:** 11. Sınıf / Mobil Uygulamalar Dersi
-**Konu:** 5.1 — Metot
-**Amaç:** Kod tekrarını önlemek ve programları yönetilebilir parçalara bölmek.
-
----
 
 ## 1. Metot Nedir? Neden Kullanırız? 🤔
 
