@@ -1,101 +1,205 @@
-📚 Ders: Gelişmiş Komutlar - Metotlar (Methods)
-Hedef Kitle: 11. Sınıf / Mobil Uygulamalar Dersi Konu: 5.1. [cite_start]Metot Amaç: Kod tekrarını önlemek ve programları yönetilebilir parçalara bölmek.
-1. Metot Nedir? Neden Kullanırız? 🤔
-Bir program yazarken aynı kodu tekrar tekrar yazdığını fark ettin mi? Bu hem yorucu hem de hata yapmaya çok açık bir yöntemdir. İşte burada devreye Metotlar girer!
-💡 Günlük Hayattan Örnek: Bir yemek tarifi düşün. Her seferinde "2 yumurta kır, çırp, un ekle, karıştır..." diye uzun uzun anlatmak yerine, bu işlemlerin hepsine "Kek Çırp" adını veriyoruz. Ne zaman kek yapacak olsak sadece "Kek Çırp" diyoruz. İşte metotlar da kodların "paketlenmiş" halidir.
-Temel Prensip: DRY (Don't Repeat Yourself - Kendini Tekrar Etme) Yazılım dünyasında altın kural budur. [cite_start]Aynı işi yapan kodları bir blok haline getirip isimlendirirsek, kodumuz daha düzenli olur.
-2. Bir Metodun Anatomisi (Yapısı) 🦴
-Bir metot tanımlarken belirli kurallara uyarız. [cite_start]Java dilinde bir metodun iskeleti şöyledir:
+Aşağıdaki metni tamamen **Markdown formatına uygun**, düzenli, okunabilir ve eğitim materyali formatında yeniden yazdım:
+
+---
+
+# 📚 Ders: Gelişmiş Komutlar - Metotlar (Methods)
+
+**Hedef Kitle:** 11. Sınıf / Mobil Uygulamalar Dersi
+**Konu:** 5.1 — Metot
+**Amaç:** Kod tekrarını önlemek ve programları yönetilebilir parçalara bölmek.
+
+---
+
+## 1. Metot Nedir? Neden Kullanırız? 🤔
+
+Bir program yazarken aynı kodu tekrar tekrar yazdığını fark ettin mi? Bu hem yorucu hem de hata yapmaya açık bir yöntemdir. İşte burada **Metotlar** devreye girer!
+
+### 💡 Günlük Hayattan Örnek
+
+Bir yemek tarifi düşün:
+Her seferinde “2 yumurta kır, çırp, un ekle, karıştır…” demek yerine bu işlemlerin hepsine **“Kek Çırp”** adını veriyoruz.
+Ne zaman kek yapacaksak sadece **“Kek Çırp”** diyoruz.
+
+**Metotlar da kodların paketlenmiş hâlidir.**
+
+---
+
+### 🎯 Temel Prensip: DRY (Don't Repeat Yourself – Kendini Tekrar Etme)
+
+> Aynı işi yapan kodları bir blok içinde toplarsak, kodumuz daha düzenli olur.
+
+---
+
+## 2. Bir Metodun Anatomisi (Yapısı) 🦴
+
+Java'da bir metot belirli bölümlerden oluşur:
+
+```java
 // Erişim Belirleyici - Dönüş Tipi - Metot Adı - (Parametreler)
-   public             void          selamVer    () {
-       // Metot Gövdesi (Yapılacak İşler)
-       System.out.println("Merhaba!");
-   }
+public             void          selamVer    () {
+    // Metot Gövdesi (Yapılacak İşler)
+    System.out.println("Merhaba!");
+}
+```
 
+### 🧩 Metot Bölümleri
 
-Erişim Belirleyici (public/private): Metoda kimlerin ulaşabileceğini belirler. (Şimdilik private veya public kullanacağız).
-Geri Dönüş Tipi (void/int/String...): Metot işini bitirince bize bir cevap veriyor mu? Vermiyorsa void yazılır.
-Metot Adı: Metoda verdiğimiz isimdir. (Standartlara göre Camel Case yazılır: hesapla, veriGetir gibi) [cite_start].
-Parametre Listesi: Metodun çalışması için dışarıdan malzemeye ihtiyacı var mı? Varsa parantez içine yazılır.
-3. Metot Çeşitleri
-A. Değer Döndürmeyen Metotlar (Void) 🛑
-Bu metotlar, verilen emri yerine getirir ve işi bitirir. Geriye bir sayı veya yazı göndermezler.
-Örnek: Arkadaşına "Kapıyı kapat" dedin. O da kalkıp kapıyı kapattı. İşlem bitti. Sana bir şey vermesine gerek yok.
-Java Kodu Örneği: [cite_start]Ekrana sadece "Merhaba" yazan basit bir metot:
+* **Erişim Belirleyici (public/private):**
+  Metoda kimlerin erişebileceğini belirler.
+
+* **Geri Dönüş Tipi (void/int/String...):**
+  Metot işini bitirdikten sonra geri bir değer döndürüyor mu?
+  Döndürmüyorsa → `void`
+
+* **Metot Adı:**
+  Metoda verdiğimiz isimdir.
+  → **Camel Case** kullanılır: `hesapla`, `veriGetir`
+
+* **Parametre Listesi:**
+  Metodun çalışması için dışarıdan veri gerekiyor mu?
+  Varsa parantez içine yazılır.
+
+---
+
+## 3. Metot Çeşitleri
+
+---
+
+### A. Değer Döndürmeyen Metotlar (void) 🛑
+
+Bu metotlar bir işi yapar ve biter. Geriye değer göndermezler.
+
+**Örnek:**
+Birine “Kapıyı kapat” dersin → gider kapatır → geri gelip “kapattım” demesine gerek yoktur.
+
+#### Java Kodu Örneği
+
+```java
 // Metodun Tanımlanması
 private void selamVer() {
-    // Sadece mesaj gösterir, geriye bir veri göndermez.
+    // Sadece mesaj gösterir, geriye veri göndermez
     Toast.makeText(getApplicationContext(), "Merhaba", Toast.LENGTH_LONG).show();
 }
 
-// Metodun Çağrılması (Kullanılması)
-selamVer(); 
+// Metodun Çağrılması
+selamVer();
+```
 
+---
 
-B. Değer Döndüren Metotlar (Return) ↩️
-Bu metotlar bir işlem yapar ve sonucunu bize geri döndürür. İşlem sonucunu yakalayıp başka bir yerde kullanmak istiyorsak bu türü seçeriz.
-Örnek: Arkadaşına "5 ile 10'u toplayınca kaç eder?" diye sordun. O işlemi zihninde yapar ve sana "15" cevabını verir. İşte o cevap, return edilen değerdir.
-Java Kodu Örneği: [cite_start]İki sayıyı toplayıp sonucu bize veren metot:
-// int: Bu metot geriye bir tam sayı döndürecek demektir.
+### B. Değer Döndüren Metotlar (return) ↩️
+
+Bu metotlar bir işlem yapar ve sonucunu bize **geri döndürür**.
+
+**Örnek:**
+“5 ile 10'u toplayınca kaç eder?” → Arkadaşın: “15” der.
+Bu **return edilen** değerdir.
+
+#### Java Kodu Örneği
+
+```java
+// int: Metot geriye bir tam sayı döndürür
 private int topla() {
-    return 5 + 10; // return ifadesi sonucu gönderir.
+    return 5 + 10;
 }
 
-// Kullanımı
-int sonuc = topla(); // sonuc değişkeni artık 15 değerini taşır.
+// Kullanım
+int sonuc = topla(); // sonuc = 15
+```
 
+---
 
-C. Parametre Alan Metotlar 📥
-Metotların daha akıllı olması için onlara dışarıdan veri (malzeme) gönderebiliriz. Buna parametre denir.
-Örnek: Bir blender düşün. İçine muz atarsan muzlu süt yapar, çilek atarsan çilekli süt yapar. Blender aynıdır (metot), ama içine attığın malzeme (parametre) sonucu değiştirir.
-Java Kodu Örneği: [cite_start]Dışarıdan gönderilen iki sayıyı toplayan metot:
-// Parantez içindeki değişkenler parametrelerdir.
+### C. Parametre Alan Metotlar 📥
+
+Metodun daha dinamik olmasını istiyorsak ona dışarıdan veri gönderebiliriz.
+
+**Örnek:**
+Blender'a muz koyarsan muzlu süt, çilek koyarsan çilekli süt yapar.
+Blender = metot
+Meyve = parametre
+
+#### Java Kodu Örneği
+
+```java
+// Parantez içindeki değişkenler parametrelerdir
 private int topla(int sayi1, int sayi2) {
     return sayi1 + sayi2;
 }
 
-// Kullanımı
-int sonuc1 = topla(10, 20); // Sonuç 30 olur
-int sonuc2 = topla(5, 3);   // Sonuç 8 olur
+// Kullanım
+int sonuc1 = topla(10, 20); // 30
+int sonuc2 = topla(5, 3);   // 8
+```
 
+---
 
-4. Metotlarda Aşırı Yükleme (Method Overloading) 🏋️
-Aynı isme sahip birden fazla metot oluşturabiliriz! [cite_start]Ancak bir şartımız var: Parametre sayıları veya türleri farklı olmalı. Buna "Aşırı Yükleme" denir.
-Neden Gerekli? Kullanıcının bazen 2 sayıyı, bazen 3 sayıyı toplaması gerekebilir. İkisi için de topla ismini kullanmak işimizi kolaylaştırır.
-Java Kodu Örneği:
+## 4. Metotlarda Aşırı Yükleme (Method Overloading) 🏋️
+
+Aynı isimde birden fazla metot yazabiliriz.
+**Koşul:** Parametre sayıları veya türleri farklı olmalı.
+
+Bu duruma **Method Overloading** denir.
+
+### Neden Kullanılır?
+
+Bazen kullanıcı 2 sayıyı toplamak ister, bazen 3 sayıyı.
+Her biri için ayrı isim yazmak yerine aynı ismi kullanmak daha düzenlidir.
+
+#### Java Kodu Örneği
+
+```java
 // 1. Durum: İki sayıyı toplar
 private int topla(int sayi1, int sayi2) {
     return sayi1 + sayi2;
 }
 
-// 2. Durum: Üç sayıyı toplar (Aynı isim, farklı parametre sayısı)
+// 2. Durum: Üç sayıyı toplar
 private int topla(int sayi1, int sayi2, int sayi3) {
     return sayi1 + sayi2 + sayi3;
 }
 
-// Kullanımı
-topla(5, 10);      // 1. metot çalışır
-topla(5, 10, 20);  // 2. metot çalışır
+// Kullanım
+topla(5, 10);      // İlk metot
+topla(5, 10, 20);  // İkinci metot
+```
 
+---
 
-📝 Özet ve İpuçları (Cheat Sheet)
-[ ] DRY Prensibi: Kod tekrarından kaçın, metot kullan.
-[ ] void: Metot geriye bir şey döndürmeyecekse kullanılır.
-[ ] return: Metodun sonucunu çağıran yere göndermek için kullanılır (void olmayanlarda zorunludur).
-[ ] Parametre: Metoda iş yapması için dışarıdan gönderilen veridir.
-[ ] Overloading: Aynı isimli metotları, farklı parametrelerle kullanma sanatıdır.
-🧠 Alıştırma Sorusu
-Soru: Aşağıdaki senaryoyu koda döken bir metot yazın.
-Metodun adı alanHesapla olsun.
-Metot iki tane tam sayı (kısa kenar, uzun kenar) parametre alsın.
-Bu sayıları çarpıp sonucu (alanı) geriye döndürsün (return).
-Cevap:
-<details> <summary>Cevabı Görmek İçin Tıkla</summary>
+## 📝 Özet ve İpuçları (Cheat Sheet)
+
+* [ ] **DRY Prensibi:** Kendini tekrar etme, metot kullan.
+* [ ] **void:** Geri dönüş yoksa kullanılır.
+* [ ] **return:** Sonucu geri göndermek için zorunludur (void hariç).
+* [ ] **Parametre:** Metoda dışarıdan gönderilen veridir.
+* [ ] **Overloading:** Aynı isimli metodun farklı parametrelerle tanımlanmasıdır.
+
+---
+
+## 🧠 Alıştırma Sorusu
+
+**Soru:**
+Aşağıdaki özelliklere sahip bir metot yazın:
+
+* Adı: `alanHesapla`
+* Parametre: 2 adet tam sayı (`kisaKenar`, `uzunKenar`)
+* Bu iki sayıyı çarpıp sonucu geri döndürsün (`return`)
+
+**Cevap:**
+
+<details>
+<summary>📌 Cevabı Görmek İçin Tıkla</summary>
+
+```java
 private int alanHesapla(int kisaKenar, int uzunKenar) {
     int alan = kisaKenar * uzunKenar;
     return alan;
 }
-
+```
 
 </details>
-Öğretmenim, bu notları öğrencilerinizle Notion üzerinden paylaşabilir veya sınıfta tahtaya yansıtarak üzerinden geçebilirsiniz. Bir sonraki adımda Sınıf ve Nesne (Class and Object) kavramlarına geçmemizi ister misiniz?
+
+---
+
+Öğretmenim, bu notları Notion’da paylaşabilir veya sınıfta tahtaya yansıtabilirsiniz.
+Bir sonraki konuya geçelim mi?
+📌 **Sıradaki konu: Sınıf ve Nesne (Class & Object)**
