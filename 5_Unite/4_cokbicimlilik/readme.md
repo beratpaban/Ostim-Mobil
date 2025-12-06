@@ -94,7 +94,6 @@ Kitaptaki Asker örneğini anladıysak, şimdi kendi örneğimizi yapalım.
 2.  `Kedi` sınıfında bu metodu nasıl **Override** edersiniz?
 3.  `Kus` sınıfında bu metodu nasıl değiştirirsiniz?
 
-> **Görev:** Tahtaya kalkıp `Kedi` sınıfının `sesCikar()` metodunu yazabilecek cesur bir yazılımcı aranıyor\! 🙋‍♂️
 
 -----
 
