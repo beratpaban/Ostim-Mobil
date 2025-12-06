@@ -1,9 +1,5 @@
 # 🎭 5.5. Çokbiçimlilik (Polymorphism) - Ders Notları
 
-Merhaba Kodlama Dedektifleri! 🕵️‍♂️
-Bugün, bir nesnenin **bukalemun** gibi kılıktan kılığa girmesini sağlayan, Java'nın en sihirli konusunu işleyeceğiz: **Çokbiçimlilik!**
-
----
 
 ## 🤔 Nedir Bu Çokbiçimlilik?
 
