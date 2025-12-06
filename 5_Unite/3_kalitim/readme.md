@@ -1,5 +1,5 @@
 
-````markdown
+
 # 🧬 5.4. Kalıtım (Inheritance) - Ders Notları
 
 Merhaba Genç Yazılımcılar! 👋
