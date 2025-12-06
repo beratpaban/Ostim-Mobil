@@ -141,9 +141,3 @@ Aşağıdaki senaryoyu kodlamaya çalışın:
   - [ ] `new` anahtar kelimesini kullandın mı?
 
 -----
-
-### 💡 Öğretmenim, sizin için bir not:
-
-Bu dersin sonunda öğrencilerinize *kitabınızdaki* **"Elektrikli Cihaz"** uygulamasını yaptırabilirsiniz. Bu uygulama, sınıf yapısını, özellik tanımlamayı ve metot kullanımını (aylık tüketim hesabı) pekiştirmek için harika bir pratiktir.
-
-Sizin için başka bir konuda not hazırlamamı ister misiniz? (Örneğin: Kapsülleme veya Kalıtım konuları?)
