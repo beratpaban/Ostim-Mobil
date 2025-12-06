@@ -133,15 +133,3 @@ Haydi biraz beyin fırtınası yapalım\! Aşağıdaki senaryoda Üst Sınıf ve
   * [ ] Üst sınıfa **Super Class**, alt sınıfa **Sub Class** denir.
 
 -----
-
-*Bu notlar MEB Mobil Uygulamalar ders materyali (Sayfa 194-201) baz alınarak hazırlanmıştır.*
-
-```
-
-### Öğretmenim, bu dosya ile şunları yapabilirsiniz:
-1.  **Notion'a Kopyalayın:** Dosyayı olduğu gibi kopyalayıp Notion sayfanıza yapıştırın, biçimlendirme otomatik olarak korunacaktır.
-2.  **Tahtaya Yansıtın:** Derse başlarken "Gerçek Hayat Örneği" kısmını tahtaya yansıtarak öğrencilerin ilgisini çekebilirsiniz.
-3.  **Ödev Verin:** "Sıra Sizde" kısmındaki okul senaryosunu öğrencilere ödev olarak verip, Java'da sınıfları oluşturmalarını isteyebilirsiniz.
-
-Başka bir üniteye geçmek isterseniz (örneğin: Çokbiçimlilik veya Diziler) ben buradayım!
-```
