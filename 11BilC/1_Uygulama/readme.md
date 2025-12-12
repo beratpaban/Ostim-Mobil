@@ -1,4 +1,4 @@
-## 🛒 Performans Ödevi: TeknoMarket Fiyat ve Taksit Simülasyonu
+## 🛒 Performans Uygulaması: TeknoMarket Fiyat ve Taksit Simülasyonu
 
 **Sevgili Öğrenciler,**
 
