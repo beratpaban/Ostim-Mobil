@@ -145,7 +145,3 @@ public class MarketSepeti {
   * [ ] Veritabanından veri çekerken (örneğin Firebase) genellikle ArrayList kullanılır.
 
 -----
-
-
-```
-```
