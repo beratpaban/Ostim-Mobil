@@ -172,6 +172,3 @@ Bu projeyi değerlendirirken aşağıdaki noktalara dikkat ediniz:
 -----
 
 *Başarılar\! Bu doküman proje sürecinde rehberiniz olacaktır.*
-
-```
-```
