@@ -1,10 +1,4 @@
-Harika bir seçim\! **Sağlık ve Spor Uygulaması** performans ödevinin çözüm adımlarını, kod mantığını ve teorik arka planını detaylandıran bir `README.md` dosyası hazırladım.
 
-Bu dosyayı öğrencilerinize dağıtabilir veya proje değerlendirme kriteri olarak kullanabilirsiniz.
-
------
-
-````markdown
 # 🏃‍♂️ Sağlık Asistanım: Proje Çözüm ve Açıklama Dokümanı
 
 Bu doküman, **Sağlık ve Spor Uygulaması** performans ödevinin çözüm adımlarını, kullanılan Java/Android kavramlarını ve kod mantığını detaylıca açıklamak için hazırlanmıştır.
