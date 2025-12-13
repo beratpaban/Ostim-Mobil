@@ -1,174 +1,187 @@
+### 🏗️ Bölüm 1: Java Sınıflarını Oluşturma (Arka Plan)
 
-# 🏃‍♂️ Sağlık Asistanım: Proje Çözüm ve Açıklama Dokümanı
+Önce "Birey" ve "Sporcu" sınıflarını oluşturarak işin temelini atalım.
 
-Bu doküman, **Sağlık ve Spor Uygulaması** performans ödevinin çözüm adımlarını, kullanılan Java/Android kavramlarını ve kod mantığını detaylıca açıklamak için hazırlanmıştır.
+#### 1\. Ana Sınıf: `Birey.java`
 
----
+Burada **Kapsülleme (Encapsulation)** yapacağız. Değişkenleri gizli (private) yapıp, getter/setter ile erişim vereceğiz.
 
-## 📚 İçindekiler
-1. [Proje Amacı](#proje-amacı)
-2. [Bölüm 1: Sınıf Tasarımı (Backend)](#bölüm-1-sınıf-tasarımı-backend)
-3. [Bölüm 2: Arayüz Tasarımı (Frontend)](#bölüm-2-arayüz-tasarımı-frontend)
-4. [Bölüm 3: Kodlama ve Mantık (MainActivity)](#bölüm-3-kodlama-ve-mantık-mainactivity)
-5. [Değerlendirme Kriterleri ve İpuçları](#değerlendirme-kriterleri-ve-ipuçları)
-
----
-
-## Proje Amacı
-Bu proje, öğrencilerin **Nesne Tabanlı Programlama (OOP)** temellerini (Kapsülleme, Kalıtım) ve temel algoritma yapılarını (Karar Yapıları, Döngüler) gerçek bir mobil uygulama senaryosu üzerinde uygulamasını hedefler.
-
----
-
-## Bölüm 1: Sınıf Tasarımı (Backend)
-
-Bu bölümde veri güvenliği ve kodun yeniden kullanılabilirliği esas alınmıştır.
-
-### A. Temel Sınıf: `Birey.java`
-Bu sınıf, uygulamadaki genel kullanıcı özelliklerini taşır.
-
-* **Kapsülleme (Encapsulation):** Değişkenler `private` (özel) yapılarak dışarıdan doğrudan erişim engellenmiştir. Erişim `Getter` ve `Setter` metotları ile sağlanır. Bu, verinin kontrolsüz değiştirilmesini önler .
-* **VKE Hesaplama Mantığı:** Vücut Kitle Endeksi formülü ($Kilo / Boy^2$) burada bir metot olarak tanımlanır.
-
-**Örnek Kod Yapısı:**
 ```java
 public class Birey {
-    // Kapsülleme: Değişkenler private
+    // Kapsülleme: Değişkenler private (dışarıya kapalı)
     private String adSoyad;
-    private double boy;
+    private double boy; // Metre cinsinden (Örn: 1.75)
     private double kilo;
 
-    // Getter ve Setter Metotları (Erişim için)
-    public void setBoy(double boy) { this.boy = boy; }
-    public double getBoy() { return boy; }
-    
-    public void setKilo(double kilo) { this.kilo = kilo; }
-    public double getKilo() { return kilo; }
+    // Getter ve Setter Metotları
+    public String getAdSoyad() { return adSoyad; }
+    public void setAdSoyad(String adSoyad) { this.adSoyad = adSoyad; }
 
-    // İşlem Metodu
+    public double getBoy() { return boy; }
+    public void setBoy(double boy) { this.boy = boy; }
+
+    public double getKilo() { return kilo; }
+    public void setKilo(double kilo) { this.kilo = kilo; }
+
+    // VKE Hesaplama Metodu (Kilo / Boy * Boy)
     public double vkeHesapla() {
-        return kilo / (boy * boy);
+        return this.kilo / (this.boy * this.boy);
     }
 }
-````
+```
 
-### B. Alt Sınıf: `Sporcu.java`
+#### 2\. Alt Sınıf: `Sporcu.java`
 
-Bu sınıf, `Birey` sınıfının özelliklerini miras alır ve üzerine sporcuya özgü özellikler ekler.
-
-  * **Kalıtım (Inheritance):** `extends Birey` komutu ile `Birey` sınıfındaki boy, kilo gibi özellikler tekrar yazılmadan buraya aktarılır.
-  * **Kalori Hesabı:** Dakika başına ortalama 10 kalori yakıldığı varsayılarak `süre * 10` formülü uygulanır.
-
-**Örnek Kod Yapısı:**
+Burada **Kalıtım (Inheritance)** kullanacağız. `extends` diyerek Birey sınıfındaki boy, kilo, isim gibi özellikleri miras alacağız.
 
 ```java
-public class Sporcu extends Birey { // Birey sınıfından miras alındı
+// "extends Birey" diyerek Birey sınıfının tüm özelliklerini miras aldık.
+public class Sporcu extends Birey {
+    
+    // Bu sınıfa özel değişken
     private int kosuSuresi;
 
-    public void setKosuSuresi(int sure) { this.kosuSuresi = sure; }
+    public int getKosuSuresi() { return kosuSuresi; }
+    public void setKosuSuresi(int kosuSuresi) { this.kosuSuresi = kosuSuresi; }
 
+    // Kalori Hesaplama: Dakikada 10 kalori yandığını varsayıyoruz.
     public int kaloriYakimiHesapla() {
-        return kosuSuresi * 10; // Örnek mantık: Dakikada 10 kalori
+        return kosuSuresi * 10; 
     }
 }
 ```
 
 -----
 
-## Bölüm 2: Arayüz Tasarımı (Frontend)
+### 🎨 Bölüm 2: Ekran Tasarımı (XML)
 
-Kullanıcı arayüzü `res/layout/activity_main.xml` dosyasında **ConstraintLayout** kullanılarak tasarlanır. Bu yerleşim türü, nesnelerin birbirine göre hizalanmasını sağlayarak ekran kaymalarını önler.
+`activity_main.xml` dosyasında tasarımı yaparken bileşenlere vereceğin **ID**'ler çok önemli. Java'da bu ID'leri kullanacağız.
 
-**Gerekli Bileşenler:**
+*Özetle XML ekranında şunlar olmalı:*
 
-1.  **EditText (Girdi Alanları):**
-      * `etBoy`: `inputType="numberDecimal"` (Ondalıklı sayı girmek için).
-      * `etKilo`: `inputType="numberDecimal"`.
-      * `etSure`: `inputType="number"`.
-2.  **Button (İşlem Düğmeleri):**
-      * `btnAnaliz`: VKE hesaplamak için.
-      * `btnKalori`: Kalori tablosu oluşturmak için.
-3.  **TextView (Sonuç Ekranı):**
-      * `tvSonuc`: Hesaplamaların yazdırılacağı alan.
+1.  **EditText (id: etAd):** İsim girmek için.
+2.  **EditText (id: etBoy):** Boy girmek için (`inputType="numberDecimal"`).
+3.  **EditText (id: etKilo):** Kilo girmek için (`inputType="numberDecimal"`).
+4.  **EditText (id: etSure):** Süre girmek için (`inputType="number"`).
+5.  **Button (id: btnAnaliz):** "Durum Analizi" yazacak.
+6.  **Button (id: btnKalori):** "Kalori Cetveli" yazacak.
+7.  **TextView (id: tvSonuc):** Sonuçları göstermek için büyük bir alan.
 
 -----
 
-## Bölüm 3: Kodlama ve Mantık (MainActivity)
+### 💻 Bölüm 3: Kodlama ve Mantık (MainActivity.java)
 
-Bu bölümde arayüz ve sınıflar `MainActivity.java` dosyasında birleştirilir.
-
-### Adım 1: Tanımlama ve Nesne Oluşturma
-
-XML dosyasındaki bileşenler Java kodunda `findViewById` ile tanımlanır. Ayrıca `Sporcu` sınıfından bir nesne üretilir.
+Şimdi parçaları birleştiriyoruz. Burada **If-Else** ve **For Döngüsü** kullanacağız.
 
 ```java
-// Sınıf seviyesinde tanımlamalar
-EditText etBoy, etKilo, etSure;
-TextView tvSonuc;
-Sporcu yeniSporcu = new Sporcu(); // Nesne üretimi
-```
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-### Adım 2: Durum Analizi (If-Else Yapısı)
+public class MainActivity extends AppCompatActivity {
 
-"Durum Analizi" butonuna tıklandığında:
+    // 1. Tanımlamalar
+    EditText etAd, etBoy, etKilo, etSure;
+    Button btnAnaliz, btnKalori;
+    TextView tvSonuc;
 
-1.  Kullanıcıdan alınan veriler `Double.parseDouble()` ile sayıya çevrilir.
-2.  `yeniSporcu.setBoy()` ve `setKilo()` ile nesneye aktarılır.
-3.  `vkeHesapla()` metodu çağrılır.
-4.  Çıkan sonuç **If-Else If-Else** karar yapısı ile kontrol edilir.
+    // Sınıfımızdan nesne üretiyoruz
+    Sporcu yeniSporcu = new Sporcu();
 
-**Kod Mantığı:**
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-```java
-double sonuc = yeniSporcu.vkeHesapla();
-String durum = "";
+        // 2. XML ile Bağlama
+        etAd = findViewById(R.id.etAd);
+        etBoy = findViewById(R.id.etBoy);
+        etKilo = findViewById(R.id.etKilo);
+        etSure = findViewById(R.id.etSure);
+        btnAnaliz = findViewById(R.id.btnAnaliz);
+        btnKalori = findViewById(R.id.btnKalori);
+        tvSonuc = findViewById(R.id.tvSonuc);
 
-if (sonuc < 18.5) {
-    durum = "Zayıf";
-} else if (sonuc >= 18.5 && sonuc < 25) {
-    durum = "Normal / Sağlıklı";
-} else if (sonuc >= 25 && sonuc < 30) {
-    durum = "Fazla Kilolu";
-} else {
-    durum = "Obezite Sınırı";
+        // --- BUTON 1: DURUM ANALİZİ (VKE & IF-ELSE) ---
+        btnAnaliz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Verileri alıp sayıya çeviriyoruz
+                String boyStr = etBoy.getText().toString();
+                String kiloStr = etKilo.getText().toString();
+
+                if (!boyStr.isEmpty() && !kiloStr.isEmpty()) {
+                    double gelenBoy = Double.parseDouble(boyStr);
+                    double gelenKilo = Double.parseDouble(kiloStr);
+
+                    // Nesneye verileri gönder (Setter)
+                    yeniSporcu.setBoy(gelenBoy);
+                    yeniSporcu.setKilo(gelenKilo);
+
+                    // Hesaplamayı yap
+                    double vke = yeniSporcu.vkeHesapla();
+                    String durum = "";
+
+                    // KARAR YAPILARI (IF - ELSE IF - ELSE)
+                    if (vke < 18.5) {
+                        durum = "Zayıf";
+                    } else if (vke >= 18.5 && vke < 25) {
+                        durum = "Normal / Sağlıklı";
+                    } else if (vke >= 25 && vke < 30) {
+                        durum = "Fazla Kilolu";
+                    } else {
+                        durum = "Obezite Sınırı";
+                    }
+
+                    tvSonuc.setText("VKE Değeriniz: " + String.format("%.2f", vke) + "\nSağlık Durumu: " + durum);
+                }
+            }
+        });
+
+        // --- BUTON 2: KALORİ CETVELİ (FOR DÖNGÜSÜ) ---
+        btnKalori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sureStr = etSure.getText().toString();
+
+                if (!sureStr.isEmpty()) {
+                    int toplamSure = Integer.parseInt(sureStr);
+                    String tabloMetni = "--- KALORİ YAKIM CETVELİ ---\n";
+
+                    // DÖNGÜ (FOR LOOP)
+                    // 5'ten başlayıp, girilen süreye kadar 5'er 5'er artacak.
+                    // (i = i + 5) mantığı burada çok önemli.
+                    for (int i = 5; i <= toplamSure; i = i + 5) {
+                        int yakilanKalori = i * 10; // Dakikada 10 kalori varsayımı
+                        tabloMetni += i + ". Dakika sonunda: " + yakilanKalori + " kalori yakıldı.\n";
+                    }
+
+                    tvSonuc.setText(tabloMetni);
+                } else {
+                    Toast.makeText(MainActivity.this, "Lütfen süre giriniz!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }
-
-tvSonuc.setText("VKE: " + sonuc + "\nDurum: " + durum);
 ```
 
-### Adım 3: Kalori Cetveli (For Döngüsü)
+### 🚀 Kodun Çalışma Mantığı (Özet)
 
-"Kalori Cetveli" butonuna tıklandığında:
+1.  **OOP (Nesne Tabanlı Programlama):**
+      * `Sporcu` sınıfını `Birey` sınıfından miras aldık. Böylece boy ve kilo işlemleri için tekrar kod yazmadık, ana sınıftaki (Birey) kodu kullandık.
+2.  **Karar Yapısı (If-Else):**
+      * VKE sonucuna (örneğin 26.5) baktık. `if` blokları sırasıyla kontrol etti. 25 ile 30 arasında olduğu için "Fazla Kilolu" sonucunu değişkene atadı.
+3.  **Döngü (For Loop):**
+      * Kullanıcı 20 dakika girdiyse döngü şöyle çalışır:
+          * `i=5` -\> 5. Dakika: 50 Kalori
+          * `i=10` -\> 10. Dakika: 100 Kalori
+          * `i=15` -\> 15. Dakika: 150 Kalori
+          * `i=20` -\> 20. Dakika: 200 Kalori
+      * Her turda metin birleştirilerek (`+=`) alt alta yazdırılır.
 
-1.  Süre bilgisi alınır.
-2.  **For Döngüsü** kurularak, sayaç 5'er 5'er artırılır (`i+=5`). Bu sayede her dakika yerine sadece 5. , 10. , 15. dakikalar hesaplanır.
-3.  Döngü her döndüğünde sonuç, önceki metnin üzerine eklenir (String Concatenation `+=`).
-
-**Kod Mantığı:**
-
-```java
-int toplamSure = Integer.parseInt(etSure.getText().toString());
-String tablo = "--- Kalori Yakım Tablosu ---\n";
-
-// Döngü 1'den başlar, süreye kadar 5'er artarak devam eder
-for (int i = 5; i <= toplamSure; i += 5) {
-    int yakilan = i * 10; // Dakika * 10 kalori
-    tablo += i + ". Dakika: " + yakilan + " kalori yakıldı.\n";
-}
-
-tvSonuc.setText(tablo);
-```
-
------
-
-## Değerlendirme Kriterleri ve İpuçları
-
-Bu projeyi değerlendirirken aşağıdaki noktalara dikkat ediniz:
-
-  * ✅ **Kapsülleme:** Değişkenlere doğrudan (`yeniSporcu.boy = 1.80`) erişilmemeli, `setBoy(1.80)` kullanılmalıdır.
-  * ✅ **Kalıtım:** `Sporcu` sınıfında boy ve kilo değişkenleri tekrar tanımlanmamalı, `extends` ile `Birey` sınıfından alınmalıdır.
-  * ✅ **Tip Dönüşümü:** `EditText`'ten gelen veri `String` olduğu için matematiksel işlem yapmadan önce `Double` veya `Integer`'a çevrilmelidir (Parsing).
-  * ✅ **Döngü Mantığı:** `for` döngüsünün artış miktarı `i++` değil, `i+=5` olmalıdır.
-
------
-
-*Başarılar\! Bu doküman proje sürecinde rehberiniz olacaktır.*
+Bu kodları sırasıyla uyguladığında, hem **sağlık hesaplaması yapan** hem de **spor verisi listeleyen** harika bir uygulaman olacak. Başarılar\!
