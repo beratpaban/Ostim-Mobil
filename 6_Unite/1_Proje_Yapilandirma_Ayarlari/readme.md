@@ -1,143 +1,216 @@
-# 🛠️ 6.1. PROJE YAPILANDIRMA AYARLARI
+## 📂 **6.1. Proje Yapılandırma Ayarları**
 
-Android Studio'da "File > New Project" dediğimizde karşımıza çıkan o kalabalık dosya yapısı aslında çok düzenli bir sistemdir. Bir mobil uygulamanın anatomisini, **kod örnekleri** üzerinden inceleyelim.
+* Yeni bir **mobil uygulama projesi** oluşturulduğunda, **Project alanında** çeşitli **dosya ve klasörler** ile karşılaşılır.
+* Bu **dosya ve klasör yapısını tanımak**, projeyi doğru şekilde anlamanın ilk adımıdır.
+* Projede yer alan **her dosya ve klasörün farklı bir işlevi vardır** 🧩
+* Bu yapıyı bilmek:
 
----
+  * **Projeye hâkimiyeti artırır**
+  * Geliştirme sürecini **daha kontrollü ve verimli** hale getirir 🚀
+* Görsel referans: **Görsel 6.1**
 
-## 1. 🆔 AndroidManifest.xml (Uygulamanın Kimliği)
 
-Bu dosya, uygulamanın **pasaportudur**. Uygulama çalışmadan önce Android sistemi bu dosyayı okur ve "Sen kimsin?", "Hangi yetkilere sahipsin?" diye sorar.
+## 📄 **6.1.1. AndroidManifest.xml Dosya Yapısı**
 
-> **Konum:** `app > manifests > AndroidManifest.xml`
+* **AndroidManifest.xml**, `manifest` klasörü içinde yer alan ve **Android uygulamaları için vazgeçilmez** bir dosyadır ❗
+* Uygulamanın:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+  * **Activity**
+  * **Service**
+  * **Broadcast Receiver**
+  * **Temel proje bilgileri**
 
-    <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Test1">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+  gibi **kritik bileşenleri** bu dosyada tanımlanır.
+* Dosya **XML formatındadır**, bu sayede:
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+  * **Okunması kolaydır**
+  * **Düzenlemesi pratiktir** 🛠️
+* Kodlar **< > (tag / etiket)** yapısı ile yazılır:
 
-</manifest>
-
-```
+  * `<etiket>` ile başlar
+  * `</etiket>` ile kapanır
 
 ---
 
-## 2. 🧠 MainActivity.java (Uygulamanın Beyni)
+## 🧩 **Temel AndroidManifest Etiketleri**
 
-Tasarımın arkasındaki mantıksal işlemlerin döndüğü yerdir. Butona basılınca ne olacağını burada yazarız.
+### 🔹 **`<manifest>`**
 
-> **Konum:** `app > java > com.okul.proje > MainActivity`
+* Uygulamanın:
 
-```java
-package com.okul.projeniz; // Uygulamanın paket adresi
+  * **Versiyon numarası**
+  * **Paket adı**
+  * **İzinleri**
+  * **Minimum & maksimum SDK sürümleri**
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-
-// 'extends AppCompatActivity': Bu sınıfın bir Android ekranı olduğunu belirtir.
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        // ⭐ EN ÖNEMLİ SATIR:
-        // Bu Java kodunu, 'activity_main.xml' tasarım dosyasıyla birleştirir.
-        // Bu satır olmazsa ekran bembeyaz görünür!
-        setContentView(R.layout.activity_main);
-    }
-}
-
-```
+  gibi **en temel ayarları** burada yapılır.
+* Projede kullanılan **kütüphaneler ve SDK yapılandırmaları** bu bölümde belirlenir.
 
 ---
 
-## 3. 🎨 res (Resources) Klasörü
+### 🔹 **`package`**
 
-Kod (Java) ile Tasarım (XML/Resim) dosyalarının birbirinden ayrıldığı yerdir. Kodlar `java` klasöründe, geri kalan her şey buradadır.
+* Uygulamanın **paket adını** tanımlar.
+* Genellikle:
 
-### 📂 Klasör Yapısı ve Görevleri:
+  * `com.atilimciftci.denemeuygulamasi`
+    formatında yazılır 🌐
+* Amaç:
+  👉 **Paket adının benzersiz (unique) olması**
 
-* **`drawable`**: 🖼️ Resimlerin (jpg, png) ve arka plan çizimlerinin konulduğu yer.
-* **`layout`**: 📐 Ekran tasarımları. (Örn: `activity_main.xml`). Butonu, yazıyı sürükleyip bıraktığımız yer burasıdır.
-* **`mipmap`**: 📱 Uygulama ikonları.
-* **`values`**: 📝 Sabit değerler.
+⚠️ **Önemli Not:**
 
-#### 👇 Örnek: `values/strings.xml` Dosyası
-
-Uygulamadaki yazıları kodun içine gömmek yerine burada tutarız.
-
-```xml
-<resources>
-    <string name="app_name">Ders Uygulaması</string>
-    
-    <string name="btn_giris">Giriş Yap</string>
-    <string name="text_hosgeldin">Merhaba Öğrenci!</string>
-</resources>
-
-```
+* Paket adı **tamamen geliştiriciye aittir**
+* Uygulama **marketlerde yayımlanırken de** bu ad kullanılır
+* Bu nedenle **her uygulama için unique yani benzersiz bir paket adı seçilmelidir**
 
 ---
 
-## 4. 🐘 Gradle Scripts (İnşaat Mühendisi)
+### 🔹 **`<application>`**
 
-Kodları, resimleri ve kütüphaneleri birleştirip `.apk` (yüklenebilir uygulama) haline getiren araçtır.
+* Uygulamanın genel özellikleri burada tanımlanır:
 
-> **Dosya:** `build.gradle (Module: app)`
+  * **Uygulama ikonu** (`android:icon`)
+  * **Uygulama adı** (`android:label`)
+  * **Tema** (`android:theme`)
+* Ayrıca:
 
-```groovy
-plugins {
-    id 'com.android.application' // Bu modülün bir uygulama olduğunu belirtir
-}
+  * **Donanım hızlandırma**
+  * **Yedekleme ayarları**
 
-android {
-    namespace 'com.okul.projeniz'
-    compileSdk 34 // Uygulamanın derlendiği SDK sürümü
-
-    defaultConfig {
-        applicationId "com.okul.projeniz" // 🆔 Market'teki benzersiz kimlik
-        minSdk 24 // 📉 Bu uygulama en düşük Android 7.0 (API 24) da çalışır.
-        targetSdk 34 // Hedeflenen en güncel sürüm.
-        versionCode 1 // Güncelleme sayısı (1, 2, 3...)
-        versionName "1.0" // Kullanıcının gördüğü sürüm adı
-    }
-}
-
-dependencies {
-    // 📦 KÜTÜPHANELER
-    // Uygulamaya dışarıdan özellik eklediğimiz yer.
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-}
-
-```
+  gibi özellikler de bu etiket altında eklenebilir ⚙️
 
 ---
 
-### 🚀 Haftanın Görevi
+### 🔹 **`<activity>`**
 
-1. Boş bir Android projesi oluşturun.
-2. `AndroidManifest.xml` dosyasına gidip `<application>` etiketindeki `android:label` kısmını bulun.
-3. `Ctrl` (veya Mac için `Cmd`) tuşuna basılı tutarak `label`'ın üzerine tıklayın. Sizi `strings.xml` dosyasına götürecek mi? Deneyin!
+* Uygulamada yer alan **tüm ekranlar (activity’ler)** bu etiket ile tanımlanır.
+* Her activity’ye ait **özellikler ve davranışlar** burada belirlenir.
 
 ---
+
+### 🔹 **`<intent-filter>`**
+
+* **Activity, Service ve Broadcast Receiver** bileşenlerinin:
+
+  * Hangi intent’lere cevap vereceğini belirtir
+* İçinde şu etiketler bulunur:
+
+  * `<action>`
+  * `<category>`
+  * `<data>`
+* ⚠️ **`<action>` etiketi mutlaka eklenmelidir**
+
+---
+
+### 🔹 **`<action>`**
+
+* Uygulama çalıştığında **ilk açılacak sınıfı** belirtir 🚀
+* Genellikle şu şekilde tanımlanır:
+
+  * `android.intent.action.MAIN`
+* Kendini kapatan tag yapısı kullanılabilir:
+
+  * `<action ... />`
+    → Ayrı bir kapanış etiketine gerek yoktur
+
+---
+
+## 📌 **Genel Not**
+
+* AndroidManifest.xml yalnızca:
+
+  * `manifest`
+  * `package`
+  * `application`
+  * `activity`
+  * `intent-filter`
+  * `action`
+
+  etiketleriyle **sınırlı değildir** ❗
+* İhtiyaca göre:
+
+  * **İzinler (permissions)** (İnternet izni, Kamera izni)
+  * **Servisler**: (Ekranı olmayan, arka planda çalışan yapılardır. Örneğin arka planda müzik çalma)
+  * **Broadcast Receiver** (Düşük pil, internet kesilmesi gibi olayların dinlenmesidir.)
+
+  gibi ek yapılar da bu dosyaya eklenmelidir.
+
+---
+
+## 6.1.2. **MainActivity ve Activity Yapısı**
+
+* **MainActivity**, uygulamanın **ana Java dosyasıdır** ve `java` klasörü altındaki **paket içinde** yer alır.
+* Her **Activity** iki parçadan oluşur:
+
+  * **Java dosyası** → işlem / mantık
+  * **XML dosyası** → arayüz / tasarım 🎨
+* **MainActivity**’nin tasarım dosyası:
+
+  * `res/layout/activity_main.xml`
+
+🔁 Java ve XML dosyaları **birbirine bağlıdır**:
+
+* Java’daki kod → XML’i
+* XML’deki tasarım → Java’yı etkiler
+
+---
+
+## ➕ **Yeni Activity Ekleme (Kısaca)**
+
+* `java` klasöründe paket adına **sağ tık → New > Activity**
+* Activity seçilir → **Next**
+* Ayarlar:
+
+  * **Activity Name**
+  * **Generate Layout File** ✅
+  * **Source Language:** Java
+* **Finish** →
+  👉 Yeni **Java Activity** + ona bağlı **XML layout** otomatik oluşur
+
+---
+
+
+## 📁 **6.1.3. res (Resources)**
+
+* **res**, uygulamanın tüm **görsel ve kaynak dosyalarını** içerir.
+* Alt klasörlerin **her biri farklı bir amaç** için kullanılır.
+* Dışarıdan **dosya eklenebilir**.
+
+---
+
+## 🖼️ **6.1.3.1. drawable**
+
+* Uygulamada kullanılan:
+
+  * **Resimler** (`.png`, `.jpg`, `.gif`)
+  * **XML drawable** dosyaları
+    burada tutulur.
+* Farklı ekran yoğunlukları için klasörlenir:
+
+  * `drawable-ldpi` → düşük
+  * `drawable-mdpi` → orta
+  * `drawable-hdpi` → yüksek
+  * `drawable-xhdpi / xxhdpi / xxxhdpi` → çok yüksek 📱
+
+---
+
+## 🧱 **6.1.3.2. layout**
+
+* Uygulamanın **arayüz (UI)** dosyaları burada yer alır.
+* Tüm dosyalar **XML formatındadır**.
+* 3 farklı düzenleme modu vardır:
+
+  * **Code** → sadece XML
+  * **Split** → XML + tasarım eş zamanlı 🔁
+  * **Design** → sürükle-bırak (kod yok)
+
+---
+
+## 🚀 **6.1.3.3. mipmap**
+
+* Uygulamanın **ikonları (launcher icon)** burada bulunur.
+* Farklı ekran yoğunlukları için **ayrı ayrı** tanımlanır.
+* Varsayılan ikon: **`ic_launcher`** 🎯
+
+
