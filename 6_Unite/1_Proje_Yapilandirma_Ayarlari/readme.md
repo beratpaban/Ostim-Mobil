@@ -213,4 +213,92 @@
 * Farklı ekran yoğunlukları için **ayrı ayrı** tanımlanır.
 * Varsayılan ikon: **`ic_launcher`** 🎯
 
+## 🐘 **6.1.4. Gradle Scripts**
 
+* **Gradle**, Android projelerinde kodların derlenmesi, kütüphanelerin yönetilmesi ve uygulamanın cihazda çalışabilir hale getirilmesi (build) işlemlerini otomatize eden bir **yapılandırma aracıdır** ⚙️
+* Android Studio'da sol taraftaki panelde **Gradle Scripts** klasörü altında yer alır.
+* Projeyi bir yemek tarifine benzetirsek, Gradle bu yemeğin **pişirilme talimatlarıdır** 🍳
+
+---
+
+## 📄 **6.1.4.1. build.gradle (Project: ...)**
+
+* Bu dosya, **tüm projenin genel ayarlarını** içerir.
+* Projedeki tüm modüller için geçerli olan **ortak depolar (repositories)** ve **eklentiler (plugins)** burada tanımlanır.
+* Genellikle bu dosyada çok sık değişiklik yapılmasına gerek duyulmaz.
+
+---
+
+## 📄 **6.1.4.2. build.gradle (Module :app)**
+
+* Geliştiricilerin **en çok işlem yaptığı** dosyadır 🛠️
+* Sadece mevcut modülü (genellikle uygulamayı) ilgilendiren ayarlar burada bulunur:
+
+### 🔹 **`plugins`**
+
+* Projede kullanılan eklentileri belirtir (Örneğin: `id 'com.android.application'`).
+
+### 🔹 **`defaultConfig`**
+
+* Uygulamanın temel kimlik bilgilerini içerir:
+* **applicationId:** Uygulamanın marketteki benzersiz (unique) kimliği.
+* **minSdk:** Uygulamanın çalışabileceği **en düşük** Android sürümü.
+* **targetSdk:** Uygulamanın test edildiği ve tam uyumlu olduğu sürüm.
+* **versionCode:** Market güncellemeleri için kullanılan sayısal versiyon.
+* **versionName:** Kullanıcının gördüğü versiyon ismi (Örn: "1.0.0").
+
+
+
+### 🔹 **`buildFeatures`**
+
+* Android Studio'nun özel özelliklerini açıp kapatmaya yarar.
+* **View Binding** özelliğini aktif etmek için buraya şu kod eklenir:
+```gradle
+buildFeatures {
+    viewBinding true
+}
+
+```
+
+
+
+### 🔹 **`dependencies` (Bağımlılıklar)**
+
+* Uygulamaya dışarıdan eklenen **kütüphanelerin** (Libraries) listesidir.
+* Örneğin, tasarım için Google'ın Material kütüphanesini veya resim çekmek için Glide kütüphanesini buraya ekleriz 📚
+
+---
+
+## 📄 **6.1.4.3. settings.gradle**
+
+* Projeye dahil olan **modüllerin** listesini tutar.
+* "Bu proje hangi parçalardan (app, kütüphane modülleri vb.) oluşuyor?" sorusunun cevabıdır.
+
+---
+
+## 📄 **6.1.4.4. local.properties**
+
+* Bilgisayarındaki **Android SDK** yolunu (dosya konumunu) belirten dosyadır 💻
+* Bu dosya bilgisayara özeldir; başka bir bilgisayara proje kopyalandığında oradaki konuma göre otomatik güncellenir.
+
+---
+
+## 🔁 **Sync Now (Senkronizasyon) Nedir?**
+
+* Gradle dosyalarında (özellikle `build.gradle`) herhangi bir değişiklik yapıldığında ekranın sağ üst köşesinde **"Sync Now"** yazısı çıkar.
+* ⚠️ **Önemli:** Değişikliklerin etkili olması için bu butona basmak zorunludur.
+* Bu işlem sırasında Android Studio:
+* Yazılan kodları kontrol eder.
+* Gerekli kütüphaneleri internetten indirir.
+* Projeyi yeniden yapılandırır.
+
+
+
+---
+
+## 📌 **Kritik Hatırlatma**
+
+* Gradle ayarlarında yapılan küçük bir yazım hatası, uygulamanın **hiç çalışmamasına** (build hatasına) neden olabilir ❗
+* Bu yüzden kütüphane eklerken veya sürüm değiştirirken parantezlere ve tırnak işaretlerine çok dikkat edilmelidir.
+
+---
