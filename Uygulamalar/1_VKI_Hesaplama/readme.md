@@ -1,12 +1,4 @@
-Harika bir pedagojik yaklaşım! İlk uygulamayı çözümle birlikte sunduktan sonra, öğrencilerin elinden tutmadan ama yollarını aydınlatarak ilerlemelerini sağlamak kalıcılığı artıracaktır.
-
-İkinci uygulama için konu önerim: **"Vücut Kitle İndeksi (VKİ) Hesaplayıcı"**. Bu uygulama hem `View Binding` kullanımını pekiştirir hem de temel matematiksel işlemleri ve `if-else` mantığını Android ortamına taşır.
-
-İşte öğrencilere dağıtabileceğiniz, **kod içermeyen** adım adım uygulama talimatnamesi:
-
----
-
-## 🏗️ Uygulama 2: Vücut Kitle İndeksi Hesaplayıcı (Görev Listesi)
+## 🏗️ Uygulama 1: Vücut Kitle İndeksi Hesaplayıcı (Görev Listesi)
 
 **Senaryo:** Kullanıcıdan boy (cm) ve kilo (kg) bilgilerini alacağız. Bir butona basıldığında sonucu hesaplayıp ekrandaki bir etikette (TextView) göstereceğiz.
 
@@ -49,11 +41,3 @@ $$VKİ = \frac{Kilo}{(Boy/100)^2}$$
 * Eğer VKİ 18.5'ten küçükse "Zayıf", 18.5 ile 24.9 arasındaysa "Normal", 25 ile 29.9 arasındaysa "Fazla Kilolu", 30'dan büyükse "Obez" yazısını `textViewDurum` bileşenine yazdırın.
 
 ---
-
-### Öğretmen Notu (Öğrencilerin Takılabileceği Noktalar):
-
-1. **Tip Dönüşümü:** `getText().toString()` yaptıktan sonra bunu `Double.parseDouble()` içine almayı unutmamaları gerekir.
-2. **Boş Veri Hatası:** Eğer kullanıcı boş kutuya basıp butona tıklarsa uygulama çöker. İleri seviye öğrencilere "Boş mu?" kontrolü yapmalarını hatırlatabilirsiniz.
-3. **Binding İsmi:** Eğer proje ismini farklı koydularsa binding sınıfı isminin (örn: `ActivityMainBinding`) değişebileceğini belirtin.
-
-Bu aşamalı yönergeyi onlara verdikten sonra, sınıf içinde dolaşarak sadece **mantıksal ipuçları** vermeniz öğrenme sürecini tamamlayacaktır. Bir sonraki aşama için bu uygulamayı **renklendirmelerini** (duruma göre arka planın kırmızı veya yeşil olması gibi) ister misiniz?
