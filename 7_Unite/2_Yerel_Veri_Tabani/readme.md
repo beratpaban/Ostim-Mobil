@@ -54,7 +54,7 @@ SQLiteOnline üzerinde denetebileceğiniz, basitten karmaşığa doğru `SELECT`
 
 ---
 
-## 3.1. Her Şeyi Getirmek (`SELECT *`)
+#### 3.1. Her Şeyi Getirmek (`SELECT *`)
 En temel komuttur. Tablodaki tüm sütunları ve tüm satırları olduğu gibi ekrana döker. Buradaki `*` (yıldız) sembolü **"Hepsi"** anlamına gelir.
 
 ```sql
@@ -65,7 +65,7 @@ SELECT * FROM Ogrenciler;
 
 ---
 
-## 3.2. Sütun Seçmek (Veri Ayıklama)
+#### 3.2. Sütun Seçmek (Veri Ayıklama)
 Bazen tablodaki tüm bilgilere (örneğin öğrencinin TC kimlik numarasına veya adresine) ihtiyacımız olmaz. Sadece belirli başlıkları görmek istersek sütun adlarını yazarız.
 
 ```sql
@@ -76,7 +76,7 @@ SELECT ad, soyad FROM Ogrenciler;
 
 ---
 
-## 3.3. Şartlı Seçim (`WHERE` Kullanımı)
+#### 3.3. Şartlı Seçim (`WHERE` Kullanımı)
 İşte gerçek güç buradadır. Binlerce veri arasından sadece belirli bir kurala uyanları ayıklarız.
 
 
@@ -94,7 +94,7 @@ SELECT ad, soyad FROM Ogrenciler;
 
 ---
 
-## 3.4. Veriyi Sıralamak (`ORDER BY`)
+#### 3.4. Veriyi Sıralamak (`ORDER BY`)
 Verilerin hangi sırayla geleceğini belirler. Uygulamalarda "En yüksek puan" veya "A'dan Z'ye sırala" butonlarının arkasındaki mantıktır.
 
 * **ASC (Ascending):** Küçükten büyüğe / A'dan Z'ye.
@@ -118,7 +118,7 @@ SELECT * FROM Ogrenciler WHERE ad LIKE 'A%';
 
 ---
 
-### Özet Tablo
+## Özet Tablo
 
 | Komut Parçası | Ne Anlama Gelir? | Gerçek Hayat Karşılığı |
 | :--- | :--- | :--- |
